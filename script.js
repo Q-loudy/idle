@@ -13,7 +13,10 @@ let autoClickers4 = 0;
 let autoClicker4Cost = 100000;
 
 let autoClickers5 = 0;
-let autoClicker5Cost = 1000000;
+let autoClicker5Cost = 1000000;	
+
+let autoClickers6 = 0;
+let autoClicker6Cost = 10000000;
 
 const coinDisplay = document.getElementById("coinCount");
 const clickButton = document.getElementById("clickButton");
@@ -37,6 +40,10 @@ const autoClicker4CostDisplay = document.getElementById("autoClicker4Cost");
 const buyAutoClicker5Button = document.getElementById("buyAutoClicker5");
 const autoClicker5CountDisplay = document.getElementById("autoClicker5Count");
 const autoClicker5CostDisplay = document.getElementById("autoClicker5Cost");
+
+const buyAutoClicker6Button = document.getElementById("buyAutoClicker6");
+const autoClicker6CountDisplay = document.getElementById("autoClicker6Count");
+const autoClicker6CostDisplay = document.getElementById("autoClicker6Cost");
 
 clickButton.addEventListener("click", () => {
   coins++;
@@ -88,6 +95,15 @@ buyAutoClicker5Button.addEventListener("click", () => {
   }
 });
 
+buyAutoClicker6Button.addEventListener("click", () => {
+  if (coins >= autoClicker6Cost) {
+    coins -= autoClicker6Cost;
+    autoClickers6++;
+    autoClicker6Cost = Math.floor(autoClicker6Cost * 1.06);
+    updateDisplay();
+  }
+});
+
 function formatNumber(num) {
   if (num < 1000) return num.toString();
 
@@ -118,6 +134,9 @@ function updateDisplay() {
   
   autoClicker5CountDisplay.textContent = formatNumber(autoClickers5);
   autoClicker5CostDisplay.textContent = formatNumber(autoClicker5Cost);
+  
+  autoClicker6CountDisplay.textContent = formatNumber(autoClickers6);
+  autoClicker6CostDisplay.textContent = formatNumber(autoClicker6Cost);
 }
 
 setInterval(() => {
@@ -126,5 +145,6 @@ setInterval(() => {
   autoClickers2 += autoClickers3;  
   autoClickers3 += autoClickers4;  
   autoClickers4 += autoClickers5;  
+  autoClickers5 += autoClickers6;  
   updateDisplay();
 }, 100);
