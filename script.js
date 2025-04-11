@@ -213,3 +213,10 @@ setInterval(saveGame, 5000);
 // Save when the user leaves
 window.addEventListener("beforeunload", saveGame);
 
+document.getElementById("resetGame").addEventListener("click", () => {
+  if (confirm("Are you sure you want to reset your progress? This cannot be undone.")) {
+    localStorage.removeItem("idleGameSave");
+    location.reload(); // Refresh the page to reinitialize everything
+  }
+});
+
