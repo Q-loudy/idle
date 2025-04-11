@@ -196,7 +196,7 @@ function loadGame() {
     // Offline progress
     const timeDiff = (Date.now() - state.lastSaved) / 1000; // seconds
     const cps = autoClickers; // basic income per second
-    coins += cps * timeDiff;
+    coins += Math.floor(cps * timeDiff);
 
     updateDisplay();
   }
