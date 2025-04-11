@@ -148,3 +148,68 @@ setInterval(() => {
   autoClickers5 += autoClickers6;  
   updateDisplay();
 }, 100);
+
+function getGameState() {
+  return {
+    coins,
+    autoClickers,
+    autoClickerCost,
+    autoClickers2,
+    autoClicker2Cost,
+    autoClickers3,
+    autoClicker3Cost,
+    autoClickers4,
+    autoClicker4Cost,
+    autoClickers5,
+    autoClicker5Cost,
+    autoClickers6,
+    autoClicker6Cost,
+    lastSaved: Date.now()
+  };
+}
+
+function saveGame() {
+  const state = getGameState();
+  localStorage.setItem("idleGameSave", JSON.stringify(state));
+}
+
+function loadGame() {
+  const saved = localStorage.getItem("idleGameSave");
+  if (saved) {
+    const state = JSON.parse(saved);
+
+    // Load values
+    coins = state.coins ?? 100;
+    autoClickers = state.autoClickers ?? 0;
+    autoClickerCost = state.autoClickerCost ?? 100;
+    autoClickers2 = state.autoClickers2 ?? 0;
+    autoClicker2Cost = state.autoClicker2Cost ?? 1000;
+    autoClickers3 = state.autoClickers3 ?? 0;
+    autoClicker3Cost = state.autoClicker3Cost ?? 10000;
+    autoClickers4 = state.autoClickers4 ?? 0;
+    autoClicker4Cost = state.autoClicker4Cost ?? 100000;
+    autoClickers5 = state.autoClickers5 ?? 0;
+    autoClicker5Cost = state.autoClicker5Cost ?? 1000000;
+    autoClickers6 = state.autoClickers6 ?? 0;
+    autoClicker6Cost = state.autoClicker6Cost ?? 10000000;
+
+    // Offline progress
+    const timeDiff = (Date.now() - state.lastSaved) / 1000; // seconds
+    const cps = autoClickers; // basic income per second
+    coins += cps * timeDiff;
+
+    updateDisplay();
+  }
+}
+
+// Load the game when the page loads
+window.addEventListener("load", () => {
+  loadGame();
+});
+
+// Auto-save every 5 seconds
+setInterval(saveGame, 5000);
+
+// Save when the user leaves
+window.addEventListener("beforeunload", saveGame);
+
