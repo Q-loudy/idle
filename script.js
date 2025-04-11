@@ -2,7 +2,7 @@
 let coins = 100;
 let autoClickers = 0;
 let autoClickerCost = 100;
-
+ 
 let autoClickers2 = 0;
 let autoClicker2Cost = 1000;
 
