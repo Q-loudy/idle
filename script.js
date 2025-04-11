@@ -1,5 +1,5 @@
 // script.js
-let coins = 10;
+let coins = 100;
 let autoClickers = 0;
 let autoClickerCost = 100;
  
