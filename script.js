@@ -13,7 +13,7 @@ let autoClickers4 = 0;
 let autoClicker4Cost = 100000;
 
 let autoClickers5 = 0;
-let autoClicker5Cost = 100000;
+let autoClicker5Cost = 1000000;
 
 const coinDisplay = document.getElementById("coinCount");
 const clickButton = document.getElementById("clickButton");
